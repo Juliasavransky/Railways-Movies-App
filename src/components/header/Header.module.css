@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+.nav_name {
+  font-family: 'Train One', cursive;
+  font-size: 3rem;
+}
+.nav_list {
+  display: flex;
+  background-color: aqua;
+  width: 50%;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
