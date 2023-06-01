@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Page } from '../../utils/interfaces/interfaces';
 
 const initialState = {
-  page: 0,
+  page: undefined,
 };
 
 const pageSlice = createSlice({
@@ -10,13 +10,13 @@ const pageSlice = createSlice({
   initialState,
   reducers: {
     fetchPage: (state, { payload }) => {
-      state.page = payload.page;
+      state = payload;
+      return state;
     },
   },
 });
 
 export const { fetchPage } = pageSlice.actions;
 
-export const getPageNumber = (state: { page: { page: Page } }) =>
-  state.page.page;
+export const getPageNumber = (state: { page: { page: Page } }) => state.page;
 export default pageSlice.reducer;

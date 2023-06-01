@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import style from './HomePage.module.css';
 import { AxiosResponse } from 'axios';
 import moviesApi from '../../utils/api/moviesApi';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies, getAllMovies } from '../../features/movies/movieSlice';
+import { useDispatch } from 'react-redux';
+import { fetchMovies } from '../../features/movies/movieSlice';
 import MovieList from '../movieList/MovieList';
 import { fetchPage } from '../../features/movies/pageSlice';
 const apiKey = process.env.REACT_APP_MOVIES_KEY;
@@ -21,7 +21,7 @@ const HomePage = () => {
 
       try {
         const response: AxiosResponse<any> = await moviesApi.get(
-          `?api_key=${apiKey}`
+          `?api_key=${apiKey}&include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc`
         );
         dispatch(fetchMovies(response.data.results));
         dispatch(fetchPage(response.data.page));
