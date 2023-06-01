@@ -2,36 +2,20 @@ import { useEffect, useState } from 'react';
 import style from './HomePage.module.css';
 import { AxiosResponse } from 'axios';
 import moviesApi from '../../utils/api/moviesApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMovies, getAllMovies } from '../../features/movies/movieSlice';
+import MovieList from '../movieList/MovieList';
+import { fetchPage } from '../../features/movies/pageSlice';
 const apiKey = process.env.REACT_APP_MOVIES_KEY;
 
-interface Movie {
-  adult: string;
-  backdrop_path: string;
-  genre_ids: [];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
-interface Page {
-  page: number;
-}
 const HomePage = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const [moviesData, setMoviesData] = useState<Movie[] | undefined>(undefined);
-  const [pageNumber, setPageNumber] = useState<Page | undefined>(undefined);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMoviesFromApi = async () => {
       setError(false);
       setLoading(true);
 
@@ -39,8 +23,9 @@ const HomePage = () => {
         const response: AxiosResponse<any> = await moviesApi.get(
           `?api_key=${apiKey}`
         );
-        setMoviesData((await response.data.results) as Movie[]);
-        setPageNumber((await response.data.page) as Page);
+        dispatch(fetchMovies(response.data.results));
+        dispatch(fetchPage(response.data.page));
+
         setLoading(false);
       } catch (error) {
         setError(true);
@@ -48,10 +33,8 @@ const HomePage = () => {
         console.log('Error', error);
       }
     };
-    fetchMovies();
-  }, []);
-
-  console.log(moviesData);
+    fetchMoviesFromApi();
+  }, [dispatch]);
 
   return (
     <>
@@ -59,9 +42,7 @@ const HomePage = () => {
         <h1>Loading....</h1>
       ) : (
         <div className={style.home}>
-          {moviesData?.map((movie: any) => (
-            <div>{movie.title}</div>
-          ))}
+          <MovieList />
         </div>
       )}
     </>
