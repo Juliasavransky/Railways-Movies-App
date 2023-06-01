@@ -3,15 +3,13 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { Movie } from '../../utils/interfaces/interfaces';
 import MovieCard from '../movieCard/MovieCard';
 import style from './MovieList.module.css';
-import { getPageNumber } from '../../features/movies/pageSlice';
 
 function MovieList() {
   const movies = useSelector(getAllMovies);
-  const pages = useSelector(getPageNumber);
 
   return (
     <div className={style.container}>
-      {movies?.length ? (
+      {movies.length > 0 ? (
         movies.map((movie: Movie) => (
           <MovieCard
             key={movie.id}

@@ -5,14 +5,16 @@ import moviesApi from '../../utils/api/moviesApi';
 import { useDispatch } from 'react-redux';
 import { fetchMovies } from '../../features/movies/movieSlice';
 import MovieList from '../movieList/MovieList';
-import { fetchPage } from '../../features/movies/pageSlice';
+import { Movie } from '../../utils/interfaces/interfaces';
+
 const apiKey = process.env.REACT_APP_MOVIES_KEY;
 
 const HomePage = () => {
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState<boolean>(true);
-
   const dispatch = useDispatch();
+
+  const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [pageNumber, setPageNumber] = useState<number>(1);
 
   useEffect(() => {
     const fetchMoviesFromApi = async () => {
@@ -21,10 +23,9 @@ const HomePage = () => {
 
       try {
         const response: AxiosResponse<any> = await moviesApi.get(
-          `?api_key=${apiKey}&include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc`
+          `?api_key=${apiKey}&include_adult=false&include_video=true&language=en-US&page=${pageNumber}&sort_by=popularity.desc`
         );
         dispatch(fetchMovies(response.data.results));
-        dispatch(fetchPage(response.data.page));
 
         setLoading(false);
       } catch (error) {
@@ -34,7 +35,23 @@ const HomePage = () => {
       }
     };
     fetchMoviesFromApi();
-  }, [dispatch]);
+  }, [dispatch, pageNumber]);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setLoading(true);
+      setPageNumber((prev) => prev + 1);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  console.log(pageNumber);
 
   return (
     <>
