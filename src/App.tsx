@@ -5,10 +5,8 @@ import HomePage from './components/homePage/HomePage';
 import Footer from './components/footer/Footer';
 import MovieDetails from './components/movieDetails/MovieDetails';
 import UserHistory from './components/userHistory/UserHistory';
-const apiKye = process.env.REACT_APP_MOVIES_KEY;
 
 function App() {
-  console.log(apiKye);
   return (
     <div>
       <Header />
