@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
 import style from './HomePage.module.css';
-import { AxiosResponse } from 'axios';
-import moviesApi from '../../utils/api/moviesApi';
 import { useDispatch } from 'react-redux';
-import { fetchMovies } from '../../features/movies/movieSlice';
 import MovieList from '../movieList/MovieList';
-import { Movie } from '../../utils/interfaces/interfaces';
-
-const apiKey = process.env.REACT_APP_MOVIES_KEY;
+import { asyncFetchMoviesFromApi } from '../../features/movies/movieSlice';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -17,25 +12,12 @@ const HomePage = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
 
   useEffect(() => {
-    const fetchMoviesFromApi = async () => {
-      setError(false);
-      setLoading(true);
+    setLoading(true);
+    //@ts-ignore
+    dispatch(asyncFetchMoviesFromApi());
 
-      try {
-        const response: AxiosResponse<any> = await moviesApi.get(
-          `?api_key=${apiKey}&include_adult=false&include_video=true&language=en-US&page=${pageNumber}&sort_by=popularity.desc`
-        );
-        dispatch(fetchMovies(response.data.results));
-
-        setLoading(false);
-      } catch (error) {
-        setError(true);
-        setLoading(false);
-        console.log('Error', error);
-      }
-    };
-    fetchMoviesFromApi();
-  }, [dispatch, pageNumber]);
+    setLoading(false);
+  }, [pageNumber, dispatch]);
 
   const handleScroll = () => {
     if (

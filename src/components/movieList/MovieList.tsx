@@ -6,16 +6,17 @@ import style from './MovieList.module.css';
 
 function MovieList() {
   const movies = useSelector(getAllMovies);
+  const moviesToRender = movies.movies;
 
   return (
     <div className={style.container}>
-      {movies.length > 0 ? (
-        movies.map((movie: Movie) => (
+      {movies ? (
+        moviesToRender.map((movie: Movie) => (
           <MovieCard
-            key={movie.id}
-            title={movie.title}
-            summary={movie.overview}
-            img={movie.backdrop_path}
+            key={movie.id as number}
+            title={movie.title as string}
+            summary={movie.overview as string}
+            img={movie.backdrop_path as string}
           />
         ))
       ) : (
