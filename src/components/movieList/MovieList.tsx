@@ -11,12 +11,14 @@ function MovieList() {
   return (
     <div className={style.container}>
       {movies ? (
-        moviesToRender.map((movie: Movie) => (
+        moviesToRender.map((movie: Movie, index: number) => (
           <MovieCard
-            key={movie.id as number}
-            title={movie.title as string}
-            summary={movie.overview as string}
-            img={movie.backdrop_path as string}
+            key={movie.id}
+            id={movie.id}
+            index={index}
+            title={movie.title}
+            summary={movie.overview}
+            img={movie.backdrop_path}
           />
         ))
       ) : (

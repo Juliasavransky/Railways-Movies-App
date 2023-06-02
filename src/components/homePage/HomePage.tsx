@@ -15,7 +15,6 @@ const HomePage = () => {
     setLoading(true);
     //@ts-ignore
     dispatch(asyncFetchMoviesFromApi());
-
     setLoading(false);
   }, [pageNumber, dispatch]);
 
