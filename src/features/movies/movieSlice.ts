@@ -9,8 +9,7 @@ export const asyncFetchMoviesFromApi: AsyncThunk<
   Movies[],
   void,
   ThunkApiConfig
-> = createAsyncThunk('movies/asyncFetchMoviesFromApi', async () => {
-  const pageNumber = 1;
+> = createAsyncThunk('movies/asyncFetchMoviesFromApi', async (pageNumber) => {
   const response: AxiosResponse<any> = await moviesApi.get(
     `discover/movie?api_key=${apiKey}&include_adult=false&include_video=true&language=en-US&page=${pageNumber}&sort_by=popularity.desc`
   );

@@ -7,14 +7,13 @@ import { asyncFetchMoviesFromApi } from '../../features/movies/movieSlice';
 const HomePage = () => {
   const dispatch = useDispatch();
 
-  const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [pageNumber, setPageNumber] = useState<number>(1);
 
   useEffect(() => {
     setLoading(true);
     //@ts-ignore
-    dispatch(asyncFetchMoviesFromApi());
+    dispatch(asyncFetchMoviesFromApi(pageNumber));
     setLoading(false);
   }, [pageNumber, dispatch]);
 

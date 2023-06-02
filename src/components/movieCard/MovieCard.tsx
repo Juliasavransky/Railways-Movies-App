@@ -14,7 +14,6 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
-  key,
   title,
   summary,
   img,
