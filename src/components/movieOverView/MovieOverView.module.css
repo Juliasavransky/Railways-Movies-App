@@ -1,0 +1,38 @@
+.container__overlay {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  min-width: 100vw; /* Full width */
+  min-height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0.6;
+  display: flex;
+}
+.container__content {
+  width: 30%;
+  height: 30%;
+  padding: absolute;
+  z-index: 10;
+  margin: auto;
+  background-color: #fefefe;
+}
+.container__title {
+  background-color: #d8d7d7;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.container__titleText {
+  font-size: 2rem;
+}
+.container__btn {
+  width: 8%;
+}
+.container__summery {
+  padding: 2rem;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+}

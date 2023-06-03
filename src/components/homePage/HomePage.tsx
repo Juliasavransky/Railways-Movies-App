@@ -31,7 +31,6 @@ const HomePage = () => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  console.log(pageNumber);
 
   return (
     <>

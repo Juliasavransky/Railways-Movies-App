@@ -5,6 +5,7 @@ import HomePage from './components/homePage/HomePage';
 import Footer from './components/footer/Footer';
 import MovieDetails from './components/movieDetails/MovieDetails';
 import UserHistory from './components/userHistory/UserHistory';
+import MovieOverView from './components/movieOverView/MovieOverView';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/selected/:id' element={<MovieDetails />} />
         <Route path='/history' element={<UserHistory />} />
+        <Route path='/movieOverView/:id' element={<MovieOverView />} />
       </Routes>
       <Footer />
     </div>
