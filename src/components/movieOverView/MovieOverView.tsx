@@ -33,7 +33,7 @@ const MovieOverView: React.FC = ({
 
   const onCloseHandler = () => {
     navigate('/');
-    onCloseModal!;
+    onCloseModal!();
   };
   useEffect(() => {
     setLoading(true);

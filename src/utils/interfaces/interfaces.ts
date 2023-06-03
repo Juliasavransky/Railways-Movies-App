@@ -19,6 +19,7 @@ export interface Page {
 }
 
 export interface SelectedMovie {
+  [x: string]: any;
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection: null;

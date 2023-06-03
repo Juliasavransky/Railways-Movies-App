@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useState } from 'react';
 import style from './MovieCard.module.css';
 import favorite from '../../utils/icons/favorite.svg';
@@ -51,6 +50,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
       </div>
 
       {isModelOpen ? (
+        //@ts-ignore
         <MovieOverView onCloseModal={onCloseModal} isModalOpen={isModelOpen!} />
       ) : null}
     </>

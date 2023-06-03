@@ -1,23 +1,34 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   asyncFetchSelectedMoviesFromApi,
   getSelectedMovie,
   removeSelectedMovie,
 } from '../../features/movies/selectedSlice';
+import { addTicket, removeTicket } from '../../features/movies/ticketsSlice';
 import adult from '../../utils/icons/no_adult.svg';
 import style from './MovieDetails.module.css';
 import ticket from '../../utils/icons/ticket.svg';
+import { useAppSelector } from '../../utils/hooks/hooks';
 
 function MovieDetails() {
   const [loading, setLoading] = useState<boolean>(true);
   const params = useParams();
   const movieId = Number(params.id);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const selectedMovieDetails = useSelector(getSelectedMovie);
   const detailsForRender = selectedMovieDetails.selectedMovie;
+  const { tickets: numberOfTickets } = useAppSelector(
+    (state: { tickets: any }) => state.tickets
+  );
+
+  const handleAfterPurchase = () => {
+    navigate('/thankYouForBuying');
+    console.log('thankYouForBuying');
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -29,8 +40,6 @@ function MovieDetails() {
       dispatch(removeSelectedMovie);
     };
   }, [dispatch, movieId]);
-  //@ts-ignore
-  const { tickets } = useSelector((state) => state.tickets);
 
   return (
     <>
@@ -50,10 +59,12 @@ function MovieDetails() {
             )}
             <div>
               <div>bay tickets now</div>
-              <img src={ticket} alt='cart icon' />
-              <div>number of tickets: {tickets} </div>
-              <button onClick={() => console.log('cvhm')}>+1</button>
-              <button onClick={() => console.log('sdgn')}>-1</button>
+              <img onClick={handleAfterPurchase} src={ticket} alt='cart icon' />
+              <div>
+                number of tickets: {numberOfTickets > 0 ? numberOfTickets : 0}{' '}
+              </div>
+              <button onClick={() => dispatch(addTicket(1))}>+1</button>
+              <button onClick={() => dispatch(removeTicket(1))}>-1</button>
             </div>
           </div>
           <img

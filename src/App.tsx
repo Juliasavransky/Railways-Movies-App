@@ -6,7 +6,7 @@ import Footer from './components/footer/Footer';
 import MovieDetails from './components/movieDetails/MovieDetails';
 import UserHistory from './components/userHistory/UserHistory';
 import MovieOverView from './components/movieOverView/MovieOverView';
-
+import ThankYouForBuying from './components/thank/ThankYouForBuying';
 function App() {
   return (
     <div>
@@ -16,6 +16,7 @@ function App() {
         <Route path='/selected/:id' element={<MovieDetails />} />
         <Route path='/history' element={<UserHistory />} />
         <Route path='/movieOverView/:id' element={<MovieOverView />} />
+        <Route path='/thankYouForBuying' element={<ThankYouForBuying />} />
       </Routes>
       <Footer />
     </div>

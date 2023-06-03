@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
 import { SelectedMovie } from '../../utils/interfaces/interfaces';
 import { AxiosResponse } from 'axios';
 import moviesApi from '../../utils/api/moviesApi';
-import { type } from 'os';
 const apiKey = process.env.REACT_APP_MOVIES_KEY;
 
 type ThunkApiConfig = {};
