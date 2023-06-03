@@ -46,10 +46,6 @@ export const favoritesSlice = createSlice({
         console.log(state.favoriteMovies);
       });
     },
-    // getMovieTitle: (state, action: PayloadAction<string>) => {
-    //   state.favoriteMovies.movieTitle = action.payload;
-    //   return state.favoriteMovies.movieTitle;
-    // },
   },
 });
 

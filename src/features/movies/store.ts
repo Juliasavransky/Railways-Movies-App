@@ -3,6 +3,7 @@ import moviesReducer from './movieSlice';
 import selectedMoviesReducer from './selectedSlice';
 import ticketsReducer from './ticketsSlice';
 import favoritesReducer from './favoritesSlice';
+import moviesPurchaseReducer from './purchaseSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     selectedMovies: selectedMoviesReducer,
     tickets: ticketsReducer,
     favoriteMovies: favoritesReducer,
+    moviesPurchase: moviesPurchaseReducer,
   },
 });
 
