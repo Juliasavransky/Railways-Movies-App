@@ -6,7 +6,7 @@ import Footer from './components/footer/Footer';
 import MovieDetails from './components/movieDetails/MovieDetails';
 import UserHistory from './components/userHistory/UserHistory';
 import MovieOverView from './components/movieOverView/MovieOverView';
-import ThankYouForBuying from './components/thank/ThankYouForBuying';
+import ThankYouForBuying from './components/thanks/ThankYouForBuying';
 function App() {
   return (
     <div>
