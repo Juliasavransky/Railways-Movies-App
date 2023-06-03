@@ -36,18 +36,12 @@ export const favoritesSlice = createSlice({
           (movie) => movie.movieId !== newMovie.movieId
         );
         //@ts-ignore
-        state.favoriteMovies.isFavorite = !state.favoriteMovies.isFavorite;
+        state.favoriteMovies.isFavorite = action.payload.isFavorite = false;
         // isFavorite = false;
       }
-    },
-    getMovieTitle: (state, action: PayloadAction<string>) => {
-      state.favoriteMovies.forEach((movie) => {
-        movie.movieTitle = action.payload;
-        console.log(state.favoriteMovies);
-      });
     },
   },
 });
 
-export const { getMovieTitle, toggleFavorite } = favoritesSlice.actions;
+export const { toggleFavorite } = favoritesSlice.actions;
 export default favoritesSlice.reducer;

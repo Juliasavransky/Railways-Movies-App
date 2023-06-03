@@ -2,7 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export type MoviesPurchase = {
   movieTitle: string;
-  dateOfPurchase: Date;
+  dateOfPurchase: string;
+  ticketsAmount: number;
 };
 
 type InitialState = {
@@ -19,6 +20,7 @@ export const purchaseSlice = createSlice({
   reducers: {
     getAllPurchases: (state, action: PayloadAction<MoviesPurchase>) => {
       state.moviesPurchase = [...state.moviesPurchase, action.payload];
+      console.log(state.moviesPurchase);
       return state;
     },
   },

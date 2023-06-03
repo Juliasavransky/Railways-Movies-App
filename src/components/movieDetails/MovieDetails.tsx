@@ -11,6 +11,7 @@ import adult from '../../utils/icons/no_adult.svg';
 import style from './MovieDetails.module.css';
 import ticket from '../../utils/icons/ticket.svg';
 import { useAppSelector } from '../../utils/hooks/hooks';
+import { getAllPurchases } from '../../features/movies/purchaseSlice';
 
 function MovieDetails() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -25,10 +26,25 @@ function MovieDetails() {
     (state: { tickets: any }) => state.tickets
   );
 
-  const handleAfterPurchase = () => {
+  const handlePurchase = () => {
     navigate('/thankYouForBuying');
+    dispatch(
+      getAllPurchases({
+        movieTitle: detailsForRender.title,
+        ticketsAmount: numberOfTickets,
+        dateOfPurchase: today,
+      })
+    );
     console.log('thankYouForBuying');
   };
+
+  const currentDate = new Date();
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const year = String(currentDate.getFullYear());
+
+  const today = `${day}/${month}/${year}`;
+  console.log(today);
 
   useEffect(() => {
     setLoading(true);
@@ -59,7 +75,7 @@ function MovieDetails() {
             )}
             <div>
               <div>bay tickets now</div>
-              <img onClick={handleAfterPurchase} src={ticket} alt='cart icon' />
+              <img onClick={handlePurchase} src={ticket} alt='cart icon' />
               <div>
                 number of tickets: {numberOfTickets > 0 ? numberOfTickets : 0}{' '}
               </div>
