@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
 import { SelectedMovie } from '../../utils/interfaces/interfaces';
 import { AxiosResponse } from 'axios';
 import moviesApi from '../../utils/api/moviesApi';
+import { type } from 'os';
 const apiKey = process.env.REACT_APP_MOVIES_KEY;
 
 type ThunkApiConfig = {};
@@ -18,8 +19,11 @@ export const asyncFetchSelectedMoviesFromApi: AsyncThunk<
     return response.data as SelectedMovie;
   }
 );
+type InitialState = {
+  selectedMovie: SelectedMovie;
+};
 
-const initialState = {
+const initialState: InitialState = {
   selectedMovie: {} as SelectedMovie,
 };
 
@@ -49,6 +53,7 @@ export const selectedMoviesSlice = createSlice({
 export const { removeSelectedMovie } = selectedMoviesSlice.actions;
 
 export const getSelectedMovie = (state: {
+  selectedMovies: any;
   selectedMovie: {
     map(
       arg0: (
@@ -56,8 +61,6 @@ export const getSelectedMovie = (state: {
       ) => import('react/jsx-runtime').JSX.Element
     ): import('react').ReactNode;
   };
-
-  //@ts-ignore
 }) => state.selectedMovies;
 
 export default selectedMoviesSlice.reducer;

@@ -13,7 +13,7 @@ function Header() {
 
         <div className={style.nav_list}>
           <Link to='/'>Home Gallery</Link>
-          <Link to='/selected/:id'>Tikes For Movie</Link>
+          <Link to='/selected/:id'>Tickets For Movie</Link>
           <Link to='/history'>My History</Link>
         </div>
       </nav>

@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  AsyncThunk,
+  PayloadAction,
+} from '@reduxjs/toolkit';
 import { Movie as Movies } from '../../utils/interfaces/interfaces';
 import { AxiosResponse } from 'axios';
 import moviesApi from '../../utils/api/moviesApi';
@@ -16,16 +21,20 @@ export const asyncFetchMoviesFromApi: AsyncThunk<
   return response.data.results as Movies[];
 });
 
-const initialState = {
-  movies: [] as Movies[],
+type InitialState = {
+  movies: Movies[];
+};
+
+const initialState: InitialState = {
+  movies: [],
 };
 
 export const movieSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-    fetchMovies: (state, { payload }) => {
-      state = { ...state, movies: payload };
+    fetchMovies: (state, action: PayloadAction<Movies[]>) => {
+      state = { ...state, ...action.payload };
       return state;
     },
   },
@@ -48,11 +57,11 @@ export const { fetchMovies } = movieSlice.actions;
 
 export const getAllMovies = (state: {
   movies: {
+    [x: string]: any;
     length: number;
     map(
       arg0: (movie: Movies) => import('react/jsx-runtime').JSX.Element
     ): import('react').ReactNode;
-    movies: Movies[];
   };
 }) => state.movies;
 

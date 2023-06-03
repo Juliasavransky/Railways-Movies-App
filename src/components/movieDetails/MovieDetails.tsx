@@ -8,7 +8,7 @@ import {
 } from '../../features/movies/selectedSlice';
 import adult from '../../utils/icons/no_adult.svg';
 import style from './MovieDetails.module.css';
-import cart from '../../utils/icons/shopping_cart.svg';
+import ticket from '../../utils/icons/ticket.svg';
 
 function MovieDetails() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -29,6 +29,8 @@ function MovieDetails() {
       dispatch(removeSelectedMovie);
     };
   }, [dispatch, movieId]);
+  //@ts-ignore
+  const { tickets } = useSelector((state) => state.tickets);
 
   return (
     <>
@@ -37,7 +39,7 @@ function MovieDetails() {
       ) : (
         <div className={style.container}>
           <div>
-            <h1>Bay Tikes now</h1>
+            <h1>Bay Tickets now</h1>
             <div>Title: {detailsForRender.title}</div>
             <div>Summery: {detailsForRender.overview}</div>
             <div>Released in: {detailsForRender.release_date}</div>
@@ -46,7 +48,13 @@ function MovieDetails() {
             ) : (
               <h1>not in front of the children </h1>
             )}
-            <img src={cart} alt='cart icon' />
+            <div>
+              <div>bay tickets now</div>
+              <img src={ticket} alt='cart icon' />
+              <div>number of tickets: {tickets} </div>
+              <button onClick={() => console.log('cvhm')}>+1</button>
+              <button onClick={() => console.log('sdgn')}>-1</button>
+            </div>
           </div>
           <img
             src={`https://image.tmdb.org/t/p/w500/${detailsForRender.poster_path}`}
