@@ -9,22 +9,23 @@ function MovieList() {
   const moviesToRender = movies.movies;
 
   return (
-    <div className={style.container}>
-      {movies ? (
-        moviesToRender.map((movie: Movie, index: number) => (
-          <MovieCard
-            key={movie.id}
-            id={movie.id}
-            index={index}
-            title={movie.title}
-            summary={movie.overview}
-            img={movie.backdrop_path}
-          />
-        ))
-      ) : (
-        <h1>Our cinema is closed for renovations today</h1>
-      )}
-    </div>
+    <>
+      <div className={style.container}>
+        {movies ? (
+          moviesToRender.map((movie: Movie) => (
+            <MovieCard
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              summary={movie.overview}
+              img={movie.backdrop_path}
+            />
+          ))
+        ) : (
+          <h1>Our cinema is closed for renovations today</h1>
+        )}
+      </div>
+    </>
   );
 }
 
