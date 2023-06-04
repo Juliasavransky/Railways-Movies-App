@@ -54,10 +54,11 @@ const MovieCard: React.FC<MovieCardProps> = ({
           src={`https://image.tmdb.org/t/p/w500/${img}`}
           alt='Movie Poster'
         />
-        <div>{title}</div>
+        <h3 className={style.title}>{title}</h3>
         <Link to={`/movieOverView/${id}`} className={style.paragraph}>
           <div onClick={onOpenModel}> Movie Summary: {summary}</div>
         </Link>
+
         <div className={style.buttons}>
           {isFavorite ? (
             <img

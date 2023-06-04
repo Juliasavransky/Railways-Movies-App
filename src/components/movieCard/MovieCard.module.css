@@ -1,20 +1,29 @@
 .container {
-  width: 20%;
-  height: 40vh;
-  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 17%;
+  height: 45vh;
+  border: 1px solid var(--secondary-color);
   justify-content: space-around;
   margin: 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
+  align-items: center;
 }
 .paragraph {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-size: var(--font-size-M);
 }
 .buttons {
   display: flex;
   justify-content: space-around;
-  margin-top: 1rem;
+  width: 100%;
+}
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }

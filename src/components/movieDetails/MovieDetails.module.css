@@ -2,4 +2,45 @@
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  margin-left: 3rem;
+  align-items: stretch;
+}
+.poster {
+  width: 30%;
+  aspect-ratio: 0.99;
+}
+.content {
+  display: flex;
+  align-items: center;
+}
+.tickets {
+  display: flex;
+  flex-direction: row;
+}
+.title {
+  font-size: var(--font-size-L);
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.img {
+  filter: invert(79%) sepia(58%) saturate(902%) hue-rotate(315deg)
+    brightness(101%) contrast(92%);
+}
+.overview {
+  width: 40%;
+  font-size: var(--font-size-M);
+  margin-bottom: 1rem;
+}
+.details {
+  display: flex;
+}
+.baying {
+  width: 50%;
+  margin: 2rem 0;
+}
+.buttons {
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
 }

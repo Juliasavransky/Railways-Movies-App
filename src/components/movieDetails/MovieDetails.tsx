@@ -12,6 +12,7 @@ import style from './MovieDetails.module.css';
 import ticket from '../../utils/icons/ticket.svg';
 import { useAppSelector } from '../../utils/hooks/hooks';
 import { getAllPurchases } from '../../features/movies/purchaseSlice';
+import { ticketsSlice } from './../../features/movies/ticketsSlice';
 
 function MovieDetails() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -66,25 +67,62 @@ function MovieDetails() {
         <div className={style.container}>
           <div>
             <h1>Bay Tickets now</h1>
-            <div>Title: {detailsForRender.title}</div>
-            <div>Summery: {detailsForRender.overview}</div>
-            <div>Released in: {detailsForRender.release_date}</div>
-            {detailsForRender.adult === false ? (
-              <img src={adult} alt='Adult icon' />
-            ) : (
-              <h1>not in front of the children </h1>
-            )}
-            <div>
-              <div>bay tickets now</div>
-              <img onClick={handlePurchase} src={ticket} alt='cart icon' />
-              <div>
-                number of tickets: {numberOfTickets > 0 ? numberOfTickets : 0}{' '}
+            <div className={style.content}>
+              <div className={style.title}>
+                Title: {detailsForRender.title}{' '}
               </div>
-              <button onClick={() => dispatch(addTicket(1))}>+1</button>
-              <button onClick={() => dispatch(removeTicket(1))}>-1</button>
+            </div>
+            <div>
+              <div className={style.title}>Summery:</div>
+              <div className={style.overview}> {detailsForRender.overview}</div>
+            </div>
+            <div>
+              <div className={style.details}>
+                <div className={style.title}>
+                  Released in: {detailsForRender.release_date}
+                </div>
+              </div>
+              <div>
+                <div className={style.title}>Type of movie:</div>
+                <div>
+                  {detailsForRender.adult === false ? (
+                    <img className={style.img} src={adult} alt='Adult icon' />
+                  ) : (
+                    <h1>not in front of the children </h1>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className={style.baying}>
+              <div className={style.tickets}>
+                <div>
+                  <button
+                    className={style.baying}
+                    onClick={() => dispatch(addTicket(1))}
+                  >
+                    +1
+                  </button>
+                  <button
+                    className={style.baying}
+                    onClick={() => dispatch(removeTicket(1))}
+                  >
+                    -1
+                  </button>
+                  <div className={style.title}>
+                    number of tickets:
+                    {numberOfTickets > 0 ? numberOfTickets : 0}
+                  </div>
+                  <button className={style.buttons} onClick={handlePurchase}>
+                    <img className={style.img} src={ticket} alt='cart icon' />
+                    Get the tickets
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           <img
+            className={style.poster}
             src={`https://image.tmdb.org/t/p/w500/${detailsForRender.poster_path}`}
             alt='Movie Poster'
           />

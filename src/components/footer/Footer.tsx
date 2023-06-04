@@ -1,5 +1,4 @@
 import style from './Footer.module.css';
-import { Movie } from './../../utils/interfaces/interfaces';
 
 function Footer() {
   return (
