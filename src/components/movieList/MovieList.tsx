@@ -7,7 +7,6 @@ import style from './MovieList.module.css';
 function MovieList() {
   const movies = useSelector(getAllMovies);
   const moviesToRender = movies.movies;
-
   return (
     <>
       <div className={style.container}>

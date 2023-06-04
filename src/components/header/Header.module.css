@@ -9,7 +9,13 @@
   font-family: 'Train One', cursive;
   font-size: var(--font-size-XL);
   display: flex;
+  align-items: center;
   margin-left: 2rem;
+}
+@media (max-width: 600px) {
+  .nav_name {
+    display: none;
+  }
 }
 .nav_list {
   color: var(--font-primary-color);

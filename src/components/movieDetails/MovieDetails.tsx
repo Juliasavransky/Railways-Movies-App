@@ -65,7 +65,7 @@ function MovieDetails() {
         <h1>Lodging....</h1>
       ) : (
         <div className={style.container}>
-          <div>
+          <div className={style.text_container}>
             <h1>Bay Tickets now</h1>
             <div className={style.content}>
               <div className={style.title}>
@@ -121,6 +121,7 @@ function MovieDetails() {
               </div>
             </div>
           </div>
+
           <img
             className={style.poster}
             src={`https://image.tmdb.org/t/p/w500/${detailsForRender.poster_path}`}

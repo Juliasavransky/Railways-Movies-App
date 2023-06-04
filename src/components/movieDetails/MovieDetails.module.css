@@ -1,17 +1,60 @@
 .container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 2rem;
   margin-left: 3rem;
   align-items: stretch;
 }
-.poster {
-  width: 30%;
-  aspect-ratio: 0.99;
+.text_container {
+  width: 35%;
 }
+.poster {
+  width: 40%;
+}
+@media (max-width: 600px) {
+  .text_container {
+    width: 100%;
+    font-size: 2rem;
+    margin: auto;
+  }
+  .poster {
+    width: 100%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .text_container {
+    width: 100%;
+    font-size: 2rem;
+    margin: auto;
+  }
+  .poster {
+    width: 100%;
+    margin: auto;
+  }
+}
+@media (min-width: 901px) and (max-width: 1281px) {
+  .text_container {
+    width: 70%;
+    font-size: 2rem;
+    margin: auto;
+    justify-content: center;
+  }
+  .poster {
+    width: 70%;
+    margin: auto;
+  }
+}
+
 .content {
   display: flex;
   align-items: center;
+}
+@media (max-width: 600px) {
+  .content {
+    width: 100%;
+  }
 }
 .tickets {
   display: flex;
