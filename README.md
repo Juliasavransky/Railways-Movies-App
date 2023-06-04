@@ -1,5 +1,11 @@
 # Getting Started with Create React App
 
+This project is a straightforward movie application that provides information about popular movies.
+
+In this project, I utilized React, React Hooks, TypeScript, HTML, and CSS. To manage the application state, I employed Redux Toolkit and created a separate slice for each type of state. For retrieving data, I integrated the TMDB Movies API and used Axios for database fetching. To ensure a seamless transition and smooth user experience within a single-page application, I incorporated React Router Dom version 6.
+
+I really enjoyed the exercise and had a great time building it. There are still many improvements I want to add in the future.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
