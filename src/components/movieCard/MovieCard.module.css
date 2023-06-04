@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 17%;
-  height: 45vh;
+  /* height: 45vh; */
+  flex-wrap: wrap;
+  justify-content: space-around;
   border: 1px solid var(--secondary-color);
   justify-content: space-around;
   margin: 1rem;

@@ -7,7 +7,7 @@ import favoriteSvg from '../../utils/icons/favorite.svg';
 import cart from '../../utils/icons/shopping_cart.svg';
 import { useNavigate } from 'react-router-dom';
 import { MoviesPurchase } from '../../features/movies/purchaseSlice';
-import { useEffect } from 'react';
+import style from './UserHistory.module.css';
 
 function UserHistory() {
   const favoriteMovies = useAppSelector(
@@ -48,46 +48,66 @@ function UserHistory() {
 
   return (
     <>
-      <div>
-        <div style={{ display: 'flex' }}>
-          My favorite !!!
-          {filteredFavoritesMovies?.map((favorite) => (
-            <li>
-              <ul>
-                <div>{favorite.movieTitle}</div>
-                <img
-                  style={{
-                    filter:
-                      'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)',
-                  }}
-                  onClick={() =>
-                    removeFromFavorites(favorite.movieTitle, favorite.movieId)
-                  }
-                  src={favoriteSvg}
-                  alt='favorite icon'
-                />
-                <div>bay this movie now</div>
-                <img
-                  onClick={() => handlePurchase(favorite.movieId)}
-                  src={cart}
-                  alt='cart icon'
-                />
-              </ul>
-            </li>
-          ))}
+      <div className={style.container}>
+        <div>
+          <h2 className={style.title}> My favorite</h2>
+          <div className={style.table}>
+            <div>
+              {filteredFavoritesMovies?.map((favorite) => (
+                <div key={favorite.movieId} className={style.row}>
+                  <div className={style.line}>
+                    <img
+                      className={style.icon}
+                      style={{
+                        filter:
+                          'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)',
+                      }}
+                      onClick={() =>
+                        removeFromFavorites(
+                          favorite.movieTitle,
+                          favorite.movieId
+                        )
+                      }
+                      src={favoriteSvg}
+                      alt='favorite icon'
+                    />
+                    <div> Movie title:{favorite.movieTitle}</div>
+                  </div>
+
+                  <div className={style.line}>
+                    <img
+                      className={style.icon}
+                      onClick={() => handlePurchase(favorite.movieId)}
+                      src={cart}
+                      alt='cart icon'
+                    />
+                    <div>bay this movie</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div style={{ display: 'flex' }}>
-          the movie i been to
-          {moviePurchase.map((purchase) => (
-            <li style={{ display: 'flex' }}>
-              <ul>
-                <div>{purchase.dateOfPurchase}</div>
-                <div>{purchase.movieTitle}</div>
-                <div>{purchase.ticketsAmount}</div>
-              </ul>
-            </li>
-          ))}
+        <div>
+          <h2 className={style.title}> Movies I've already seen</h2>
+          <div className={style.table}>
+            <div>
+              {moviePurchase.map((purchase) => (
+                <div key={purchase.movieId} className={style.row}>
+                  <div className={(style.title, style.purchase)}>
+                    Date of purchase: {purchase.dateOfPurchase}
+                  </div>
+                  <div className={(style.title, style.purchase)}>
+                    Movie title: {purchase.movieTitle}
+                  </div>
+                  <div className={(style.title, style.purchase)}>
+                    Amount of tickets: {purchase.ticketsAmount}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>

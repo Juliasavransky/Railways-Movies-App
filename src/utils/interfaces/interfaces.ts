@@ -46,3 +46,9 @@ export interface SelectedMovie {
   vote_average: number;
   vote_count: number;
 }
+export interface BreakPoints {
+  mobile: string;
+  tablet: string;
+  laptop: string;
+  desktop: string;
+}

@@ -8,7 +8,7 @@ function Footer() {
           <p>&copy; 2023 Julia's Movie Website</p>
         </li>
         <li className={style.li}>
-          <div>Address: Kern ha-ysod 8 Bat-Yam</div>
+          <div>Address: Kern ha-ysod Bat-Yam</div>
         </li>
         <li className={style.li}>
           <div>Phone: 054-4772571</div>
