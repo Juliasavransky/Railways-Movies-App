@@ -1,9 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Movie } from './../../utils/interfaces/interfaces';
 
 export type MoviesPurchase = {
   movieTitle: string;
   dateOfPurchase: string;
   ticketsAmount: number;
+  movieId: number;
 };
 
 type InitialState = {

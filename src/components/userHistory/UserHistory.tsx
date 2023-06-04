@@ -1,10 +1,13 @@
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/hooks';
-import { toggleFavorite } from '../../features/movies/favoritesSlice';
+import {
+  FavoriteMovie,
+  toggleFavorite,
+} from '../../features/movies/favoritesSlice';
 import favoriteSvg from '../../utils/icons/favorite.svg';
 import cart from '../../utils/icons/shopping_cart.svg';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getAllPurchases } from '../../features/movies/purchaseSlice';
+import { MoviesPurchase } from '../../features/movies/purchaseSlice';
+import { useEffect } from 'react';
 
 function UserHistory() {
   const favoriteMovies = useAppSelector(
@@ -13,22 +16,42 @@ function UserHistory() {
   const moviePurchase = useAppSelector(
     (state) => state.moviesPurchase.moviesPurchase
   );
+
+  function filterFavoriteMovies(
+    moviePurchase: MoviesPurchase[],
+    favoriteMovies: FavoriteMovie[]
+  ): FavoriteMovie[] {
+    const movieIds = moviePurchase.map((movie) => movie.movieId);
+
+    const filteredFavorites = favoriteMovies.filter(
+      (movie) => !movieIds.includes(movie.movieId)
+    );
+
+    console.log(filteredFavorites);
+    return filteredFavorites;
+  }
+  const filteredFavoritesMovies = filterFavoriteMovies(
+    moviePurchase,
+    favoriteMovies
+  );
+
   const navigate = useNavigate();
-  dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  // const removeFromFavorites=(movieTitle, movieId)=>{
-  //   dispatch(toggleFavorite({movieTitle,movieId })
-  // }
+  const removeFromFavorites = (movieTitle: string, movieId: number) => {
+    dispatch(toggleFavorite({ movieTitle, movieId, isFavorite: false }));
+  };
 
-  const handlePurchase = (id) => {
+  const handlePurchase = (id: number) => {
     navigate(`/selected/${id}`);
   };
+
   return (
     <>
       <div>
         <div style={{ display: 'flex' }}>
           My favorite !!!
-          {favoriteMovies.map((favorite) => (
+          {filteredFavoritesMovies?.map((favorite) => (
             <li>
               <ul>
                 <div>{favorite.movieTitle}</div>
@@ -38,14 +61,14 @@ function UserHistory() {
                       'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)',
                   }}
                   onClick={() =>
-                    removeFromFavorites(favorite.title, favorite.id)
+                    removeFromFavorites(favorite.movieTitle, favorite.movieId)
                   }
                   src={favoriteSvg}
                   alt='favorite icon'
                 />
                 <div>bay this movie now</div>
                 <img
-                  onClick={() => handlePurchase(favorite.id)}
+                  onClick={() => handlePurchase(favorite.movieId)}
                   src={cart}
                   alt='cart icon'
                 />

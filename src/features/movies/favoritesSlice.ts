@@ -37,7 +37,6 @@ export const favoritesSlice = createSlice({
         );
         //@ts-ignore
         state.favoriteMovies.isFavorite = action.payload.isFavorite = false;
-        // isFavorite = false;
       }
     },
   },

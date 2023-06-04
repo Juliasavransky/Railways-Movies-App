@@ -33,6 +33,7 @@ function MovieDetails() {
         movieTitle: detailsForRender.title,
         ticketsAmount: numberOfTickets,
         dateOfPurchase: today,
+        movieId: movieId,
       })
     );
     console.log('thankYouForBuying');

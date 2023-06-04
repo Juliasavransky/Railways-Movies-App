@@ -5,7 +5,10 @@ import cart from '../../utils/icons/shopping_cart.svg';
 import { Link } from 'react-router-dom';
 import MovieOverView from '../movieOverView/MovieOverView';
 import { useAppDispatch } from '../../utils/hooks/hooks';
-import { toggleFavorite } from '../../features/movies/favoritesSlice';
+import {
+  toggleFavorite,
+  FavoriteMovie,
+} from '../../features/movies/favoritesSlice';
 interface MovieCardProps {
   key?: number;
   id?: number;
@@ -33,8 +36,13 @@ const MovieCard: React.FC<MovieCardProps> = ({
   const dispatch = useAppDispatch();
 
   const favoriteHandler = () => {
-    //@ts-ignore
-    dispatch(toggleFavorite({ movieTitle: title, movieId: id }));
+    dispatch(
+      toggleFavorite({
+        movieTitle: title,
+        movieId: id,
+        isFavorite: isFavorite,
+      } as FavoriteMovie)
+    );
     console.log('favorite');
     setIsFavorite((isFavorite) => !isFavorite);
   };
