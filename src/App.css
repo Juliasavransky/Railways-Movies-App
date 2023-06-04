@@ -77,4 +77,8 @@ h6 {
   --thirdly-color: #e76f51;
   --font-primary-color: #e9c46a;
   --font-secondary-color: #f4a261;
+
+  --font-size-M: 1rem;
+  --font-size-L: 1.5rem;
+  --font-size-XL: 2.5rem;
 }

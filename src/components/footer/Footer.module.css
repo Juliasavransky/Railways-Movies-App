@@ -1,0 +1,20 @@
+footer {
+  background-color: var(--primary-color);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--font-primary-color);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: var(--font-size-M);
+}
+
+.li {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0 0;
+  margin-right: 10px;
+}

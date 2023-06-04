@@ -1,16 +1,27 @@
 .nav {
   display: flex;
   justify-content: space-between;
+  background-color: var(--primary-color);
+  color: var(--font-primary-color);
+  padding: 1rem 0;
 }
 .nav_name {
   font-family: 'Train One', cursive;
-  font-size: 3rem;
+  font-size: var(--font-size-XL);
+  display: flex;
+  margin-left: 2rem;
 }
 .nav_list {
+  color: var(--font-primary-color);
   display: flex;
-  background-color: aqua;
   width: 50%;
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
+  font-size: var(--font-size-L);
+}
+.logo {
+  filter: invert(79%) sepia(58%) saturate(902%) hue-rotate(315deg)
+    brightness(101%) contrast(92%);
+  margin: 0 2rem;
 }
